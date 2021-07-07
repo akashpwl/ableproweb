@@ -4,6 +4,16 @@
   background-color: $white;
   padding: 20px;
   padding-right: 50px;
+  .no-photos{
+    text-align: center;
+    .sad-icon{
+      color: $cyan-blue;
+      font-size: 45px;
+    }
+    .no-photos-heading{
+      font-size: 24px;
+    }
+  }
   .image-container {
     .img {
       width: 100%;

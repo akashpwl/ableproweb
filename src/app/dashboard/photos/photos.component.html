@@ -1,5 +1,12 @@
 <div class="photos-wrapper">
   <div class="row mx-0">
+    <div *ngIf="photosArray.length==0" class="col-12 no-photos">
+      <div> <i class="far fa-frown sad-icon"></i> </div>
+      <div class="no-photos-heading">
+          No Photos to show !!
+          <p>Add post to see photos.</p>
+      </div>
+  </div>
     <ng-container *ngFor="let url of photosArray">
       <div class="col-md-3 pd-5">
         <div class="image-container">
