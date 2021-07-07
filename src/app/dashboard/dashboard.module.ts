@@ -40,7 +40,7 @@ import { AboutComponent } from './about/about.component';
     NgbTooltipModule,
     SharedModule
   ],
-  providers: [DashboardService]
+  providers: []
 })
 export class DashboardModule {
 

@@ -1,10 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import {  Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from './user.module';
 import { URL } from './../shared/constants'
+import { DashboardService } from '../dashboard/services/dashboard.service';
 export interface AuthResponsedata {
   status: string,
   token: string,
@@ -21,9 +22,9 @@ export class AuthService {
   private tokenExpirationTimer: any;
   public isOtpSent: boolean = false;
   public emailForResetPassword: string = '';
-  public BaseURL = 'http://127.0.0.1:3000/api/v1/auth';
+  @Output() emitUser = new EventEmitter<{id: any, name: any}>();
 
-  constructor(private readonly http: HttpClient, private readonly router: Router) {
+  constructor(private readonly http: HttpClient, private readonly router: Router, private dashboardService: DashboardService) {
 
   }
 
@@ -57,6 +58,8 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresInMs);
     const user = new User(userObj.email, userObj.name, userId, userObj._id, token, expirationDate);
     this.user = user;
+    this.setUserInDashBoardService();
+    this.emitUser.emit({id: this.user?.userId, name: this.user?.name });
     localStorage.setItem('userData', JSON.stringify(user));
   }
   public autoLogin () {
@@ -75,6 +78,8 @@ export class AuthService {
 
     if (loadedUser.token) {
       this.user = loadedUser;
+      this.setUserInDashBoardService();
+      this.emitUser.emit({id: this.user?.userId, name: this.user?.name });
       const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
     }
@@ -107,11 +112,14 @@ export class AuthService {
   }
 
   public resetPassword (passwordObj: object) {
-    const forgotPasswordURL = this.BaseURL + '/resetPassword';
     return this.http.patch<any>(
       URL.resetPassword,
       passwordObj
     ).pipe(catchError(this.handleError));
+  }
+  private setUserInDashBoardService(){
+    this.dashboardService.currentUserId = this.user?.userId;
+    this.dashboardService.currentUserName= this.user?.name;
   }
   private handleError (errorRes: HttpErrorResponse) {
     let errorMsg = 'An unknown error occurred';

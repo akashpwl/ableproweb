@@ -1,20 +1,21 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, HostListener, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-
 import { URL } from './../../shared/constants';
 import { catchError, map, tap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
 import { Output } from '@angular/core';
+import { throwError } from 'rxjs';
 
-@Injectable()
-export class DashboardService {
+@Injectable({ providedIn: 'root' })
+export class DashboardService implements OnInit, OnDestroy {
   public postArray: Array<any> = [];
-  public currentUserId = this.authService.user?.userId;
-  public currentUserName!: string;
+  public currentUserId: any ;
+  public currentUserName: any; 
   @Output() eventEmitter = new EventEmitter<{ event: string }>();
-  constructor(private readonly http: HttpClient, private readonly authService: AuthService) {
+  constructor(private readonly http: HttpClient) {
+  }
+  
+  ngOnInit(): void {
+  
   }
 
   public updatePassword (passwordObj: object) {
@@ -219,6 +220,11 @@ export class DashboardService {
       return throwError(errorMsg);
     }
     return throwError(errorRes);
+
+  }
+
+  @HostListener('unloaded')
+  ngOnDestroy(): void {
 
   }
 }
