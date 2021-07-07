@@ -1,0 +1,30 @@
+<div class="follow-suggestion-wrapper">
+  <div class="heading">
+    <h5 class=".h5 text-secondary">WHO TO FOLLOW</h5>
+  </div>
+  <hr>
+  <div class="peoples scrollbar scrollbar-style">
+    <div *ngIf="whoToFollow.length==0" class="pl-3">  No users to follow.</div>
+    <ng-container  *ngFor="let user of whoToFollow; let i = index">
+      <div class="row mb-3">
+        <div class="col-3">
+          <div class="img">
+            <img src="./../../assets/images/profile (1).jpg" alt="">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="pl-25">
+            <h6 class="mb-0">{{ user.name | titlecase }}</h6>
+            <span class="occupation">{{ user.occupation | titlecase }}</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <button  (click)="follow(user.id, i)" [disabled]="user.followInProgress" class="btn" placement="left" ngbTooltip="Click to follow">
+            <i *ngIf="!user.followInProgress" class="fas fa-user-plus follow-icon"></i>
+            <i *ngIf="user.followInProgress" class="fas fa-spinner fa-spin follow-icon"></i>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

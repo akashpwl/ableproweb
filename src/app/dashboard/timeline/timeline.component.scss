@@ -1,0 +1,65 @@
+@import './../../shared/colors.scss';
+
+
+.timeline-wrapper {
+  background-color: $bg-color;
+  .post-container {
+    background-color: $white;
+    margin-bottom: 35px;
+  }
+  .post-container:hover {
+    box-shadow: -1px 8px 33px 2px $cards-shadow;
+  }
+}
+.pd {
+  padding: 0 10px 20px 30px;
+}
+
+.post-image {
+  img {
+    width: 100%;
+    max-height: 350px;
+  }
+}
+.caption {
+  padding: 15px;
+}
+.like-share {
+  padding: 10px;
+  text-align: center;
+}
+.dropdown {
+  text-align: right;
+  top: 20px;
+  @media only screen and (max-width: 576px) {
+    //top: 32px;
+  }
+}
+.dropdown-toggle::after {
+  opacity: 0;
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  background-color: $dark-red;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background: $dark-red;
+  border: none;
+  outline: none;
+  color: $white;
+  font-size: 36px;
+ 
+}
+.spinner-bg {
+  text-align: center;
+  span {
+    margin-top: 5px;
+    color: $cyan-blue;
+    height: 70px;
+    width: 70px;
+  }
+}

@@ -1,0 +1,50 @@
+@import './../../shared/colors.scss';
+
+
+.tabs-container {
+  background-color: $bg-color;
+  float: right;
+  width: 77%;
+  .pl-25 {
+    padding-left: 25px;
+    @media only screen and (max-width: 576px) {
+      padding-left: 0;
+    }
+  }
+  .tabs {
+    background-color: $white;
+    cursor: pointer;
+    text-align: center;
+    .tab {
+      font-size: 20px;
+      padding: 10px;
+      a {
+        color: $dim-gray;
+      }
+      @media only screen and (max-width: 576px) {
+        border-bottom: 1px $dim-gray solid;
+      }
+    }
+    .tab:hover {
+      background-color: $bg-color;
+    }
+    .tab-border {
+      border-bottom: 5px $dodger-blue solid;
+    }
+    .tabs-content {
+      box-shadow: -1px 8px 33px 2px $cards-shadow !important;
+    }
+  }
+  .tabs:hover {
+    box-shadow: -1px 8px 33px 2px $cards-shadow;
+  }
+  @media only screen and (max-width: 576px) {
+    float: none;
+    margin: auto;
+    margin-top: 40px;
+    width: 85%;
+  }
+  @media (min-width: 577px) and (max-width: 768px) {
+    width: 71%;
+  }
+}

@@ -1,0 +1,97 @@
+
+<div  class="timeline-wrapper">
+  <button (click)="open(content)" class="floating-btn">+</button>
+  <ng-container *ngFor="let post of postArray; let i=index">
+    <div class="post-container">
+      <div class="row mx-0">
+        <div class="col-12 pd">
+          <div class="dropdown">
+            <div ngbDropdown class="">
+              <button class="btn f-18 pr-0" id="dropdownBasic1" ngbDropdownToggle>
+                <i class="fas fa-ellipsis-v"></i></button>
+              <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic1">
+                <button (click)="deletePost(post.postId,post.isDeletable,i)" ngbDropdownItem>Delete Post</button>
+              </div>
+            </div>
+          </div>
+          <div> {{ post.name | titlecase }} posted on your timeline.</div>
+          <div class="text-muted">
+            <div timeago [date]="post.timeInMs"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-image">
+        <img [src]="post.url" alt="">
+      </div>
+      <div class="caption">
+        <p class="text-muted"> {{ post.caption }} </p>
+      </div>
+      <hr class="my-0">
+      <div class="like-share">
+        <div class="row">
+          <div class="col-6 col-md-3 border-right">
+            <a (click)="likeActivity(post.postId, post.isLiked, i)" class="btn"><i [ngClass]="{'text-primary':post.isLiked}" class="far fa-heart mr-1"></i>
+              <span *ngIf="!likeInProgress">
+                <span *ngIf="post.isLiked" class="text-primary"> Unlike </span>
+                <span *ngIf="!post.isLiked"> Like</span>
+              </span>
+              <span *ngIf="likeInProgress"><i class="fas fa-spinner fa-spin"></i></span>
+            </a>
+            <span *ngIf="post.likesCount && post.likesCount!=0"> ( {{post.likesCount}} ) </span>
+          </div>
+          <div class="col-6 col-md-3">
+            <button class="btn"><i class="fas fa-share-alt mr-2"></i>Share</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+
+</div>
+<!-- new post Model -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New Post</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="formRef" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="imgURL">Image URL</label>
+        <input type="text" formControlName="imgURL" class="form-control" id="imgURL" placeholder="Image URL">
+
+        <div *ngIf="imgURL.invalid && (imgURL.dirty || imgURL.touched)" class="text-danger">
+
+          <div *ngIf="imgURL.errors?.required">
+            Image URL is required.
+          </div>
+          <div *ngIf="imgURL.errors?.pattern">
+            Please enter valid URL.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="caption"> Caption</label>
+        <input type="text" formControlName="caption" class="form-control" id="caption" placeholder="Caption">
+
+        <div *ngIf="caption.invalid && (caption.dirty || caption.touched)" class="text-danger">
+
+          <div *ngIf="caption.errors?.required">
+            caption is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="!formRef.valid || isLoading">
+        <span *ngIf="!isLoading"> Submit </span>
+        <span *ngIf="isLoading"><i class="fas fa-spinner fa-spin"></i> Please Wait</span>
+      </button>
+    </div>
+  </form>
+</ng-template>

@@ -1,0 +1,344 @@
+<div class="about-wrapper">
+    <div class="shadow">
+        <div class="info-wrapper">
+            <div class="row mx-0">
+                <div class="col-12 pd">
+                    <div class="row mx-0">
+                        <div class="col-10 f-20">
+                            Basic Information
+                        </div>
+                        <div class="col-2 edit-icon">
+                            <button (click)="toggleFlag[0]=!toggleFlag[0]" class="btn btn-primary">
+                                <i *ngIf="toggleFlag[0]" class="fas fa-times text-white"></i> <i *ngIf="!toggleFlag[0]" class="fas fa-edit text-white"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr class="my-0">
+                </div>
+            </div>
+            <div *ngIf="!toggleFlag[0]" class="info">
+                <div class="row">
+                    <div class="col-12 pd-25">
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Full Name </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.name }} </span>
+                            </div>
+                        </div>
+
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Gender</span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail">{{ userData?.gender | titlecase}}</span>
+                            </div>
+                        </div>
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Birth Date </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.dob }} </span>
+                            </div>
+                        </div>
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Marital Status </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.maritalStatus | titlecase }} </span>
+                            </div>
+                        </div>
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Location </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.location }} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="toggleFlag[0]" class="forms">
+            <div class="py-3">
+                <form [formGroup]="formRef" (ngSubmit)="onSubmit(0)">
+                    <div class="form-group row mx-0">
+                        <label for="name" class="col-1 text-center col-form-label"><i class="fas fa-user"></i></label>
+                        <div class="col-10 pl-md-0">
+                            <input type="text" formControlName="name" class="form-control" id="name" placeholder="Full Name">
+                        </div>
+                    </div>
+                    <div class="form-group align-items-center row mx-0">
+                        <label for="name" class="col-1 text-center col-form-label"> <i class="fas fa-user-friends"></i>
+                        </label>
+
+                        <div class="col-10 pl-md-0">
+                            <div class="form-check">
+                                <input class="form-check-input" formControlName="gender" type="radio" name="gender" id="inlineRadio1"
+                                    value="male">
+                                <label class="form-check-label" for="inlineRadio1">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" formControlName="gender" type="radio" name="gender" id="inlineRadio2"
+                                    value="female">
+                                <label class="form-check-label" for="inlineRadio2">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row mx-0">
+                        <label for="dob" class="col-1 text-center col-form-label">
+                            <i class="far fa-calendar-alt"></i>
+                        </label>
+                        <div class="col-10 pl-md-0">
+                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                name="dp" (click)="d.toggle()" 
+                                [maxDate]="{year: maxDate.year, month: maxDate.month, day: maxDate.day}"
+                                formControlName="dob" ngbDatepicker #d="ngbDatepicker">
+                        </div>
+                    </div>
+                    <div class="form-group row mx-0">
+                        <label for="name" class="col-1 text-center col-form-label">
+                            <i class="fas fa-user-friends"></i>
+                        </label>
+                        <div class="col-10 pl-md-0">
+                            <select formControlName="maritalStatus"  class="custom-select">
+                                <option value="" selected>Martail Status</option>
+                                <option value="single">Signle</option>
+                                <option value="married">Married</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row mx-0">
+                        <label for="address" class="col-1 text-center col-form-label">
+                            <i class="fas fa-map-marker-alt"></i></label>
+                        <div class="col-10 pl-md-0">
+                            <input type="text" formControlName="location" class="form-control" id="address" placeholder="Address">
+                        </div>
+                    </div>
+                    <div class="form-group row  text-center mx-0">
+                        <div class="col-12">
+                            <button  [disabled]="!formRef.valid || submitInProgress[0]" class="btn btn-primary mr-2">Save </button>
+                            <button (click)="toggleFlag[0]=!toggleFlag[0]" class="btn btn-light">Cancel </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="about-wrapper">
+    <div class="shadow">
+        <div class="info-wrapper">
+            <div class="row mx-0">
+                <div class="col-12 pd">
+                    <div class="row mx-0">
+                        <div class="col-10  f-20">
+                            Contact Information
+                        </div>
+                        <div class="col-2 edit-icon">
+                            <button (click)="toggleFlag[1]=!toggleFlag[1]" class="btn btn-primary">
+                                <i *ngIf="toggleFlag[1]" class="fas fa-times text-white"></i> <i *ngIf="!toggleFlag[1]" class="fas fa-edit text-white"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr class="my-0">
+                </div>
+            </div>
+            <div *ngIf="!toggleFlag[1]" class="info">
+                <div class="row">
+                    <div class="col-12 pd-25">
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Mobile Number </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.mobile }} </span>
+                            </div>
+                        </div>
+
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Email Address</span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail">{{ userData?.email }}</span>
+                            </div>
+                        </div>
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Twitter </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.twitter }} </span>
+                            </div>
+                        </div>
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Skype </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.skype }} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="toggleFlag[1]" class="forms">
+            <div class="py-3">
+                <form [formGroup]="formRef" (ngSubmit)="onSubmit(1)">
+
+                    <div class="form-group row mx-0">
+                        <label for="mobile" class="col-1 text-center col-form-label"><i class="fas fa-mobile-alt"></i></label>
+                        <div class="col-10 pl-md-0 ">
+                            <input type="text" formControlName="mobile" class="form-control" id="mobile" placeholder="Mobile Number" autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group row mx-0">
+                        <label for="email" class="col-1 text-center col-form-label"><i class="fas fa-at"></i></label>
+                        <div class="col-10 pl-md-0">
+                            <input type="text" formControlName="email" class="form-control" id="email" placeholder="Email Address" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row mx-0">
+                        <label for="twitter" class="col-1 text-center col-form-label"><i class="fab fa-twitter"></i></label>
+                        <div class="col-10 pl-md-0">
+                            <input type="text" formControlName="twitter" class="form-control" id="twitter" placeholder="Twitter Profile" >
+                        </div>
+                    </div>
+                   
+                   
+                  
+                    <div class="form-group row mx-0">
+                        <label for="skype" class="col-1 text-center col-form-label">
+                            <i class="fab fa-skype"></i></label>
+                        <div class="col-10 pl-md-0">
+                            <input type="text" formControlName="skype" class="form-control" id="skype" placeholder="Skype ID">
+                        </div>
+                    </div>
+                    <div class="form-group row  text-center mx-0">
+                        <div class="col-12">
+                            <button [disabled]="!formRef.valid || submitInProgress[1]" class="btn btn-primary mr-2">Save </button>
+                            <button (click)="toggleFlag[1]=!toggleFlag[1]" class="btn btn-light">Cancel </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="about-wrapper">
+    <div class="shadow">
+        <div class="info-wrapper">
+            <div class="row mx-0">
+                <div class="col-12 pd">
+                    <div class="row mx-0">
+                        <div class="col-10  f-20">
+                            Work
+                        </div>
+                        <div class="col-2 edit-icon">
+                            <button (click)="toggleFlag[2]=!toggleFlag[2]" class="btn btn-primary">
+                                <i *ngIf="toggleFlag[2]" class="fas fa-times text-white"></i> <i *ngIf="!toggleFlag[2]" class="fas fa-edit text-white"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr class="my-0">
+                </div>
+            </div>
+            <div *ngIf="!toggleFlag[2]" class="info">
+                <div class="row">
+                    <div class="col-12 pd-25">
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Occupation </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.occupation }} </span>
+                            </div>
+                        </div>
+
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Skills</span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail">{{ userData?.skills }}</span>
+                            </div>
+                        </div>
+                        <div class="row  p-md-3 mx-0">
+                            <div class="col-6 col-md-3">
+                                <span class="col-heading"> Jobs </span>
+                            </div>
+
+                            <div class="col-6 col-md-9">
+                                <span class="col-detail"> {{ userData?.jobs }} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="toggleFlag[2]" class="forms">
+            <div class="py-3">
+                <form [formGroup]="formRef" (ngSubmit)="onSubmit(2)">
+                    <div class="form-group row mx-0">
+                        <label for="occupation " class="col-1 text-center col-form-label"> <i class="fas fa-users"></i> </label>
+                        <div class="col-10 pl-md-0 ">
+                            <input type="text" formControlName="occupation" class="form-control" id="occupation" placeholder="Occupation" autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group row mx-0">
+                        <label for="skills" class="col-1 text-center col-form-label"><i class="fas fa-award"></i></label>
+                        <div class="col-10 pl-md-0">
+                            <input type="text" formControlName="skills" class="form-control" id="skills" placeholder="Skills" >
+                        </div>
+                    </div>
+                    <div class="form-group row mx-0">
+                        <label for="jobs" class="col-1 text-center col-form-label"><i class="fas fa-tasks"></i></label>
+                        <div class="col-10 pl-md-0">
+                            <input type="text" formControlName="jobs" class="form-control" id="jobs" placeholder="Jobs" >
+                        </div>
+                    </div>
+                    <div class="form-group row  text-center mx-0">
+                        <div class="col-12">
+                            <button  [disabled]="!formRef.valid || submitInProgress[2]" class="btn btn-primary mr-2">Save </button>
+                            <button (click)="toggleFlag[2]=!toggleFlag[2]" class="btn btn-light">Cancel </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

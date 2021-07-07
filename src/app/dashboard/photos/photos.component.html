@@ -1,0 +1,11 @@
+<div class="photos-wrapper">
+  <div class="row mx-0">
+    <ng-container *ngFor="let url of photosArray">
+      <div class="col-md-3 pd-5">
+        <div class="image-container">
+          <img class="img" [src]="url" alt="">
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

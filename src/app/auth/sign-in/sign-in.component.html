@@ -1,0 +1,39 @@
+<div [ngClass]="{'cursor': isLoading }">
+  <h5 class="card-title text-center">Sign In</h5>
+  <form class="form-signin" [formGroup]="formRef" (ngSubmit)="onSubmit()">
+    <div class="form-label-group">
+      <input type="email" formControlName="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputEmail">Email address</label>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger pl-3">
+
+        <div *ngIf="email.errors?.required">
+          Email is required.
+        </div>
+        <div *ngIf="email.errors?.email">
+         Please provide a valid email.
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-label-group">
+      <input type="password" formControlName="password" id="inputPassword" class="form-control" placeholder="Password" required >
+      <label for="inputPassword">Password</label>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger pl-3">
+
+        <div *ngIf="password.errors?.required">
+          Password is required.
+        </div>
+        <div *ngIf="password.errors?.minlength">
+         Minimum length of password should be 8.
+        </div>
+      </div>
+    </div>
+    
+    <button class="btn btn-lg btn-primary btn-block text-uppercase" [disabled]="!formRef.valid|| isLoading">
+      <span [ngClass]="{'spinner-grow spinner-grow-sm': isLoading }" role="status" aria-hidden="true"></span>
+      Sign in</button>
+    <hr class="my-4">
+    <a routerLink="/auth/forgot-password" class="btn btn-lg btn-danger btn-block text-uppercase"><i class="fas fa-key mr-3"></i>Forgot Password</a>
+    <a routerLink="/auth/signup" class="btn btn-lg btn-primary btn-block text-uppercase"><i class="far fa-envelope mr-2"></i> Sign up with Email</a>
+  </form>
+</div>

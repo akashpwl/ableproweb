@@ -1,0 +1,57 @@
+@import './../../shared/colors.scss';
+
+.about-wrapper{
+    background-color: $bg-color;
+    padding-bottom: 40px;
+    .shadow{
+        background-color: $white;
+    }
+    .shadow:hover{
+        box-shadow: -1px 8px 33px 2px $cards-shadow;
+    }
+    input, select{
+        border: none;
+        border-bottom: 1px $gray solid;
+        box-shadow: none;
+        border-radius: 0;
+    
+    }
+    
+    input:focus, select:focus{
+        border: none;
+        border-bottom: 2px $cyan-blue solid;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .form-control[readonly] {
+        background-color: transparent;
+    }
+    .calender-btn{
+        position: relative;
+        text-align: right;
+        top: -38px;
+    }
+    .pd{
+        padding-top: 18px;
+        padding-bottom: 28px;
+    }
+    .f-20{
+        font-size: 20px
+    }
+    .edit-icon{
+        text-align: right;
+        i{
+            color: $dark-blue;
+        }
+    }
+    .pd-25{
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+    .col-heading {
+        font-weight: 800;
+    }
+    .col-detail{
+        color: $muted-col;
+    }
+}

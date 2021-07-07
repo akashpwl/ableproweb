@@ -1,0 +1,68 @@
+
+@import './../../shared/colors.scss';
+
+.follow-suggestion-wrapper {
+  background-color: $white;
+  border-radius: 6px;
+  padding-bottom: 20px;
+  .heading {
+    padding-top: 20px;
+    padding-left: 15px;
+    .h5 {
+      font-style: 18px;
+    }
+  }
+  .peoples {
+    max-height: 286px;
+    .img {
+      padding-left: 18px;
+      img {
+        border-radius: 20px;
+        height: 35px;
+        width: 38px;
+      }
+    }
+    .pl-25 {
+      padding-top: 2px;
+      @media (min-width: 577px) and (max-width: 768px) {
+        padding-left: 10px;
+      }
+    }
+    .occupation {
+      color: $muted-col;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .follow-icon {
+      color: $dark-blue;
+    }
+  }
+}
+
+.follow-suggestion-wrapper:hover {
+  box-shadow: -1px 8px 33px 2px $cards-shadow;
+}
+.scrollbar {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.scrollbar:hover {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.scrollbar-style::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: $white-smoke;
+}
+
+.scrollbar-style::-webkit-scrollbar {
+  width: 2px;
+  background-color: $white-smoke;
+}
+
+.scrollbar-style::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: $white-smoke;
+}

@@ -1,0 +1,23 @@
+@import './../../shared/colors.scss';
+
+.dp-wrapper {
+  .background {
+    background-color: $white;
+    border-radius: 6px;
+    padding: 15px;
+  }
+  img {
+    width: 100%;
+  }
+  .stats {
+    font-size: 28px;
+    margin-bottom: 0;
+    color: $cyan-blue;
+  }
+  .f-12 {
+    font-size: 12px;
+  }
+}
+.dp-wrapper:hover {
+  box-shadow: -1px 8px 33px 2px $cards-shadow;
+}

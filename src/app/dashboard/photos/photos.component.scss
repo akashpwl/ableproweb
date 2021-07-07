@@ -1,0 +1,29 @@
+@import './../../shared/colors.scss';
+
+.photos-wrapper {
+  background-color: $white;
+  padding: 20px;
+  padding-right: 50px;
+  .image-container {
+    .img {
+      width: 100%;
+      height: 140px;
+      -webkit-transform: scale(1);
+	    transform: scale(1);
+	   -webkit-transition: .3s ease-in-out;
+	    transition: .3s ease-in-out;
+    }
+    .img:hover{
+        -ms-transform: scale(1.2); 
+        -webkit-transform: scale(1.2); 
+        transform: scale(1.2);
+    }
+  }
+  .pd-5 {
+    padding: 5px;
+  }
+
+  @media only screen and (max-width: 1092px) {
+    padding-right: 20px;
+  }
+}

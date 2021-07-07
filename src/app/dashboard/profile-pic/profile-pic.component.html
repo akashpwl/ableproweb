@@ -1,0 +1,36 @@
+<div class="dp-wrapper">
+  <div class="background">
+    <div class="row mb-3">
+      <div class="col-12">
+        <img src="./../../assets/images/profile.jpg" alt="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center">
+          <h5> {{ name | titlecase }}</h5>
+          <p>{{ occupation | titlecase }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-4">
+        <p class="stats">{{ followingsCount }}</p>
+        <p class="f-12">Followings</p>
+      </div>
+      <div class="col-4">
+        <p class="stats">{{ followersCount}}</p>
+        <p class="f-12">Followers</p>
+      </div>
+      <div class="col-4">
+        <p class="stats">7</p>
+        <p class="f-12">Activities</p>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-12 text-center">
+        <button type="button" (click)="emitAboutTab()" class="btn btn-outline-secondary"><i class="fas fa-cog mr-2"></i>About Yourself</button>
+      </div>
+    </div>
+  </div>
+</div>

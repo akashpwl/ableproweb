@@ -1,0 +1,33 @@
+<div class="tabs-container">
+  <div class="pl-25">
+    <div class="tabs">
+      <ul ngbNav #nav="ngbNav" class="row mx-0" [(activeId)]="active" [destroyOnHide]="true">
+        <li [ngbNavItem]="1" [ngClass]="{ 'tab-border': active == 1 }" [destroyOnHide]="true" class="col-12 col-md-3 tab">
+          <a ngbNavLink>Timeline</a>
+          <ng-template ngbNavContent>
+            <app-timeline></app-timeline>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2" [ngClass]="{ 'tab-border': active == 2 }" [destroyOnHide]="false" class="col-12 col-md-3 tab">
+          <a ngbNavLink>About</a>
+          <ng-template ngbNavContent>
+            <app-about></app-about>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3" [ngClass]="{ 'tab-border': active == 3 }" [destroyOnHide]="true" class="col-12 col-md-3 tab">
+          <a ngbNavLink>Photos</a>
+          <ng-template ngbNavContent let-active>
+            <app-photos></app-photos>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="4" [ngClass]="{ 'tab-border': active == 4 }"  [destroyOnHide]="true" class="col-12 col-md-3 tab">
+          <a ngbNavLink>Friends</a>
+          <ng-template ngbNavContent>
+            <app-friends> </app-friends>
+          </ng-template>
+        </li>
+      </ul>
+    </div>
+    <div [ngbNavOutlet]="nav" class="mt-4 bg-white tabs-content"></div>
+  </div>
+</div>
