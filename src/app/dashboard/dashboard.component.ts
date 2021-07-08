@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit , OnDestroy{
 
   @HostListener('unloaded')
   ngOnDestroy(): void {
-    
   }
 
 }

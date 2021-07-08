@@ -9,8 +9,8 @@ import { DashboardService } from '../services/dashboard.service';
 export class PhotosComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService) { }
-  public photosArray:any;
-  ngOnInit (): void {
+  public photosArray: Array<any>;
+  ngOnInit(): void {
     this.photosArray = this.dashboardService.getPhotosArray();
   }
 

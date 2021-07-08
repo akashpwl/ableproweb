@@ -9,43 +9,47 @@ import { DashboardService } from '../services/dashboard.service';
   styleUrls: ['./friends.component.scss']
 })
 export class FriendsComponent implements OnInit, OnDestroy {
-  public unfollowInProgress: boolean =false;
+  public unfollowInProgress: boolean;
   public friendsList: Array<any> = [];
-  private subscribeEventRef!: Subscription;
-  constructor(private dashboardService: DashboardService, private toastr:ToastrService) { }
-  
+  private subscribeEventRef: Subscription;
+  public friendsListInProgress: boolean;
+  constructor(private dashboardService: DashboardService, private toastr: ToastrService) { }
+
   ngOnInit(): void {
     this.getFriendsList();
     this.subscribeEventRef = this.dashboardService.eventEmitter.subscribe(
-      (event)=>{
-        if(event.event == 'updateFriendsAndTimeline'){
+      (event) => {
+        if (event.event == 'updateFriendsAndTimeline') {
           this.getFriendsList();
         }
       }
     );
   }
 
-  public getFriendsList(){
+  public getFriendsList() {
+    this.friendsListInProgress = true;
     this.dashboardService.getFollowingUsers().subscribe(
-      (res:any) =>{
-        this.friendsList= res;
+      (res: any) => {
+        this.friendsListInProgress = false;
+        this.friendsList = res;
       },
-      (err:any) =>{
+      (err: any) => {
+        this.friendsListInProgress = false;
         console.log(err);
       }
     );
   }
 
-  public unfollow(followingId:string){
-    this.unfollowInProgress =true;
+  public unfollow(followingId: string) {
+    this.unfollowInProgress = true;
     this.dashboardService.unFollowUser(followingId).subscribe(
-      (res:any)=>{
+      (res: any) => {
         this.unfollowInProgress = false;
         this.getFriendsList();
-        this.dashboardService.eventEmitter.emit({event:'updateWhoToFollowAndCounts'});
+        this.dashboardService.eventEmitter.emit({ event: 'updateWhoToFollowAndCounts' });
         this.toastr.success("unfollowed successfully!");
       },
-      (err:any)=>{
+      (err: any) => {
         console.log(err);
       }
     );

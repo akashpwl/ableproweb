@@ -18,16 +18,16 @@ export class HeaderComponent implements OnInit {
   public username: any;
   constructor(private modalService: NgbModal, private dashboardService: DashboardService, private toastr: ToastrService, private authService: AuthService) { }
   public isMenuCollapsed = true;
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.username = this.authService.user?.name;
-    this.dashboardService.eventEmitter.subscribe(event=>{
-      if (event.event == 'updateNameAndOccupation'){
-      this.username = this.dashboardService.currentUserName;
+    this.dashboardService.eventEmitter.subscribe(event => {
+      if (event.event == 'updateNameAndOccupation') {
+        this.username = this.dashboardService.currentUserName;
       }
     });
   }
 
-  public open (content: any) {
+  public open(content: any) {
     this.formRef = new FormGroup({
       currentPassword: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       newPassword: new FormControl(null, [Validators.required, Validators.minLength(8)]),
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     this.modelRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
-  public onSubmit () {
+  public onSubmit() {
     this.isLoading = true;
     const passwordObj = {
       passwordCurrent: this.currentPassword.value,
@@ -58,17 +58,17 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  get currentPassword () {
+  get currentPassword() {
     return this.formRef.get('currentPassword');
   }
-  get newPassword () { return this.formRef.get('newPassword'); }
-  get confirmNewPassword () { return this.formRef.get('confirmNewPassword'); }
+  get newPassword() { return this.formRef.get('newPassword'); }
+  get confirmNewPassword() { return this.formRef.get('confirmNewPassword'); }
 
-  public logout () {
+  public logout() {
     this.authService.logout();
   }
-  
-  public matchPassword (_this: any): ValidatorFn {
+
+  public matchPassword(_this: any): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if ((control.value != _this?.formRef?.get('newPassword')?.value)) {
         console.log(_this?.formRef?.get('newPassword')); //#issue

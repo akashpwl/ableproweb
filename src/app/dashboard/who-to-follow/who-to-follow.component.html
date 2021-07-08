@@ -4,8 +4,8 @@
   </div>
   <hr>
   <div class="peoples scrollbar scrollbar-style">
-    <div *ngIf="whoToFollow.length==0" class="pl-3">  No users to follow.</div>
-    <ng-container  *ngFor="let user of whoToFollow; let i = index">
+    <div *ngIf="whoToFollow.length==0" class="pl-3"> No users to follow.</div>
+    <ng-container *ngFor="let user of whoToFollow; let i = index">
       <div class="row mb-3">
         <div class="col-3">
           <div class="img">
@@ -19,7 +19,8 @@
           </div>
         </div>
         <div class="col-3">
-          <button  (click)="follow(user.id, i)" [disabled]="user.followInProgress" class="btn" placement="left" ngbTooltip="Click to follow">
+          <button (click)="follow(user.id, i)" [disabled]="user.followInProgress" class="btn" placement="left"
+            ngbTooltip="Click to follow">
             <i *ngIf="!user.followInProgress" class="fas fa-user-plus follow-icon"></i>
             <i *ngIf="user.followInProgress" class="fas fa-spinner fa-spin follow-icon"></i>
           </button>

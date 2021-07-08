@@ -9,8 +9,8 @@ import { DashboardService } from '../services/dashboard.service';
 export class TabsComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService) { }
-  active =1;
-  ngOnInit (): void {
+  public active = 1;
+  ngOnInit(): void {
     this.dashboardService.eventEmitter.subscribe(
       (event) => {
         if (event.event == 'showAboutTab') {
@@ -19,5 +19,4 @@ export class TabsComponent implements OnInit {
       }
     );
   }
-
 }

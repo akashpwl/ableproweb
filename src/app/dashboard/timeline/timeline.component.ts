@@ -15,24 +15,25 @@ export class TimelineComponent implements OnInit, OnDestroy {
   constructor(private modalService: NgbModal, private toastr: ToastrService, private dashboardService: DashboardService) { }
   public isMenuCollapsed = true;
   public formRef: any;
-  public isLoading: boolean = false;
-  public likeInProgress: boolean = false;
+  public isLoading: boolean;
+  public likeInProgress: boolean;
   public modelRef: any;
-  public postArray: any = this.dashboardService.postArray;
-  private subscribeEventRef!: Subscription;
+  public postArray: Array<any>;
+  private subscribeEventRef: Subscription;
   public likeSound = new Audio('./../../../assets/likeSound.mp3');
-  ngOnInit (): void {
+
+  ngOnInit(): void {
     this.getAllPost();
     this.subscribeEventRef = this.dashboardService.eventEmitter.subscribe(
-      (event)=>{
-        if(event.event == 'updateFriendsAndTimeline'){
+      (event) => {
+        if (event.event == 'updateFriendsAndTimeline') {
           this.getAllPost();
         }
       }
     );
   }
 
-  public open (content: any) {
+  public open(content: any) {
     this.formRef = new FormGroup({
       imgURL: new FormControl(null, [Validators.required, Validators.pattern(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/)]),
       caption: new FormControl(null, [Validators.required])
@@ -40,13 +41,13 @@ export class TimelineComponent implements OnInit, OnDestroy {
     this.modelRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
-  get imgURL () {
+  get imgURL() {
     return this.formRef.get('imgURL');
   }
-  get caption () {
+  get caption() {
     return this.formRef.get('caption');
   }
-  onSubmit () {
+  onSubmit() {
     this.isLoading = true;
     this.dashboardService.addNewPost(this.imgURL.value, this.caption.value).subscribe(
       (resData: any) => {
@@ -62,7 +63,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     );
   }
 
-  public getAllPost () {
+  public getAllPost() {
     this.dashboardService.getAllPost().subscribe(
       (resData: any) => {
         this.postArray = resData;
@@ -73,7 +74,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     )
   }
 
-  public likeActivity (postId: string, isLiked: boolean, index: number) {
+  public likeActivity(postId: string, isLiked: boolean, index: number) {
     this.likeInProgress = true;
 
     if (isLiked) {
@@ -104,7 +105,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     }
   }
 
-  public deletePost (postId: string, isDeletable: boolean, i: number) {
+  public deletePost(postId: string, isDeletable: boolean, i: number) {
     if (!isDeletable) {
       this.toastr.error('You are not allowed to delete other users post.');
     }

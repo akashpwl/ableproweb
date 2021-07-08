@@ -13,7 +13,8 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) { }
   public otpformRef: any;
-  public isLoading: boolean = false;
+  public isLoading: boolean;
+  
   ngOnInit (): any {
     this.otpformRef = new FormGroup({
       otp: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.pattern("^[0-9]*$")]),

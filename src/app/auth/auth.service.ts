@@ -48,9 +48,7 @@ export class AuthService {
         email,
         password
       }).pipe(catchError(this.handleError), tap(resData => {
-
         this.handleAuthentication(resData.token, resData.tokenExpiresIn, resData.data.userId, resData.data.user);
-
       }));
   }
 
@@ -126,7 +124,6 @@ export class AuthService {
     // if ( !errorRes.error || !errorRes.error.error ) {
     //   return throwError( errorMsg );
     // }
-    // console.log(errorRes);
     return throwError(errorRes);
 
   }

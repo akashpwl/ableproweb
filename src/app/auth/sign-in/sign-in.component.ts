@@ -14,7 +14,7 @@ export class SignInComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) { }
   public authObs: any;
-  public isLoading: boolean = false;
+  public isLoading: boolean;
   public formRef:any;
   ngOnInit (): void {
     this.prepareForm();

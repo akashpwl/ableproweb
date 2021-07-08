@@ -14,7 +14,5 @@ export class AuthComponent implements OnInit {
     if (this.authService.user) {
       this.router.navigate(['/dashboard']);
     }
-
   }
-
 }

@@ -1,55 +1,59 @@
-@import './../../shared/colors.scss';
+@import "./../../shared/colors.scss";
 
-.friends-wrapper{
-    background-color: $bg-color;
-
-    .no-friends{
-      text-align: center;
-      .sad-icon{
-        color: $cyan-blue;
-        font-size: 45px;
-      }
-      .no-friends-heading{
-        font-size: 24px;
-      }
+.friends-wrapper {
+  background-color: $bg-color;
+  .spinner-size {
+    height: 55px;
+    color: $cyan-blue;
+    width: 55px;
+  }
+  .no-friends {
+    text-align: center;
+    .sad-icon {
+      color: $cyan-blue;
+      font-size: 45px;
     }
-    img{
-        height: 128px;
-        width: 100%;
+    .no-friends-heading {
+      font-size: 24px;
     }
-    .occupation{
+  }
+  img {
+    height: 128px;
+    width: 100%;
+  }
+  .occupation {
     color: $muted-col;
     font-size: 12px;
     margin-bottom: 0;
-    }   
+  }
 }
-.unfollow-icon{
-    color: $cyan-blue;
-    font-size: 30px;
+.unfollow-icon {
+  color: $cyan-blue;
+  font-size: 30px;
 }
 .card {
-    opacity: 1;
-    transition: .5s ease;
-    backface-visibility: hidden;
-  }
-  
-  .middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  .card-container{
-      background-color: $white;
-  }
-  .card-container:hover .card {
-    opacity: 0.3;
-  }
-  
-  .card-container:hover .middle {
-    opacity: 1;
-  }
+  opacity: 1;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.card-container {
+  background-color: $white;
+}
+.card-container:hover .card {
+  opacity: 0.3;
+}
+
+.card-container:hover .middle {
+  opacity: 1;
+}

@@ -1,14 +1,18 @@
 <div class="friends-wrapper">
-        <div class="row mx-0">
-            <div *ngIf="friendsList.length==0" class="col-12 no-friends">
-                <div> <i class="far fa-frown sad-icon"></i> </div>
-                <div class="no-friends-heading">
-                    You don't have any friends !!
-                </div>
+    <div class="row mx-0">
+        <div *ngIf="friendsListInProgress" class="col-12 text-center">
+            <div class="spinner-border spinner-size" role="status">
             </div>
-           <ng-container *ngFor="let user of friendsList">
+        </div>
+        <div *ngIf="friendsList.length==0 && !friendsListInProgress" class="col-12 no-friends">
+            <div> <i class="far fa-frown sad-icon"></i> </div>
+            <div class="no-friends-heading">
+                You don't have any friends !!
+            </div>
+        </div>
+        <ng-container *ngFor="let user of friendsList">
             <div class="col-md-6 py-3 card-container">
-                <div class="card"> 
+                <div class="card">
                     <div class="row mx-0">
                         <div class="col-4 p-0 col-xl-4">
                             <img src="./../../../assets/images/profile.jpg" alt="">
@@ -18,22 +22,22 @@
                             <p class="occupation"> {{ user.occupation | titlecase }} </p>
                         </div>
                         <div class="col-3 align-self-center d-xl-none">
-                            
-                                <button class="btn" (click)="unfollow(user.id)" placement="top" ngbTooltip="Click to unfollow"  [disabled]="unfollowInProgress"> 
+                            <button class="btn" (click)="unfollow(user.id)" placement="top"
+                                ngbTooltip="Click to unfollow" [disabled]="unfollowInProgress">
                                 <i *ngIf="!unfollowInProgress" class="fas fa-user-minus unfollow-icon"></i>
                                 <i *ngIf="unfollowInProgress" class="fas fa-spinner fa-spin unfollow-icon"></i>
-                                </button>
-                
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="middle">
-                    <button class="btn" (click)="unfollow(user.id)" placement="top" ngbTooltip="Click to unfollow"  [disabled]="unfollowInProgress"> 
-                    <i *ngIf="!unfollowInProgress" class="fas fa-user-minus unfollow-icon"></i>
-                    <i *ngIf="unfollowInProgress" class="fas fa-spinner fa-spin unfollow-icon"></i>
+                    <button class="btn" (click)="unfollow(user.id)" placement="top" ngbTooltip="Click to unfollow"
+                        [disabled]="unfollowInProgress">
+                        <i *ngIf="!unfollowInProgress" class="fas fa-user-minus unfollow-icon"></i>
+                        <i *ngIf="unfollowInProgress" class="fas fa-spinner fa-spin unfollow-icon"></i>
                     </button>
                 </div>
             </div>
         </ng-container>
-        </div>
+    </div>
 </div>

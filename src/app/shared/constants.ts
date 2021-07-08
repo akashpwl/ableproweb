@@ -17,7 +17,7 @@ export const URL = {
   followingsUsers: BaseURL + '/user/followings',
   notFollowingsUsers: BaseURL + '/user/not-followings',
   followUser: BaseURL + '/user/follow',
-  unFollowUser: BaseURL +'/user/unfollow',
+  unFollowUser: BaseURL + '/user/unfollow'
 };
 export const AuthURLs = [
   URL.signin,

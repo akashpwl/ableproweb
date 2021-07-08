@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from '../services/dashboard.service';
-import * as moment from "moment";
 
 @Component({
   selector: 'app-about',
@@ -22,7 +21,6 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.getUserDetails();
     this.maxDate = this.setMaximumDate();
-    
   }
 
   public getUserDetails(){
@@ -72,7 +70,6 @@ export class AboutComponent implements OnInit {
       (err:any)=>{
         console.log(err);
         this.submitInProgress[index] = false;
-
       }
     );
   }
@@ -122,5 +119,4 @@ export class AboutComponent implements OnInit {
       day: date.getDate()
     }
   }
-
 }

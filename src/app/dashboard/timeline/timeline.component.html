@@ -1,8 +1,8 @@
-
-<div  class="timeline-wrapper">
+<div class="timeline-wrapper">
   <button (click)="open(content)" class="floating-btn">+</button>
-  <div *ngIf="postArray.length==0" class="no-posts post-image">
-      <img src="https://img.republicworld.com/republic-prod/stories/promolarge/xhdpi/1kutzil5lj0nvfsf_1596544016.jpeg" alt="">
+  <div *ngIf="postArray?.length==0" class="no-posts post-image">
+    <img src="https://img.republicworld.com/republic-prod/stories/promolarge/xhdpi/1kutzil5lj0nvfsf_1596544016.jpeg"
+      alt="">
   </div>
   <ng-container *ngFor="let post of postArray; let i=index">
     <div class="post-container">
@@ -34,7 +34,8 @@
       <div class="like-share">
         <div class="row">
           <div class="col-6 col-md-3 border-right">
-            <a (click)="likeActivity(post.postId, post.isLiked, i)" class="btn"><i [ngClass]="{'text-primary':post.isLiked}" class="far fa-heart mr-1"></i>
+            <a (click)="likeActivity(post.postId, post.isLiked, i)" class="btn"><i
+                [ngClass]="{'text-primary':post.isLiked}" class="far fa-heart mr-1"></i>
               <span *ngIf="!likeInProgress">
                 <span *ngIf="post.isLiked" class="text-primary"> Unlike </span>
                 <span *ngIf="!post.isLiked"> Like</span>

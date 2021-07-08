@@ -12,11 +12,8 @@ import { NgbAlertModule, NgbNavModule, NgbTooltipModule } from '@ng-bootstrap/ng
 import { TabsComponent } from './tabs/tabs.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { PhotosComponent } from './photos/photos.component';
-import { DashboardService } from './services/dashboard.service';
 import { FriendsComponent } from './friends/friends.component';
 import { AboutComponent } from './about/about.component';
-
-
 
 
 @NgModule({

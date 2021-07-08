@@ -10,9 +10,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./../auth.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
-  public isLoading: boolean = false;
-  public emailformRef: any;
-
+  public isLoading: boolean;
+  public emailformRef: FormGroup;
 
   constructor(private toastr: ToastrService, private router: Router, private authService: AuthService) { }
 
@@ -42,8 +41,4 @@ export class ForgotPasswordComponent implements OnInit {
       }
     );
   }
-
-
-
-
 }

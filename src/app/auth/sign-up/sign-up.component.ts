@@ -14,12 +14,12 @@ export class SignUpComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) { }
   public authObs: any;
-  public isLoading: boolean = false;
+  public isLoading: boolean;
   public formRef:any;
+
   ngOnInit (): void {
     this.prepareForm();
   }
-
 
   public prepareForm(){
     this.formRef = new FormGroup({
@@ -70,8 +70,6 @@ export class SignUpComponent implements OnInit {
         }
       }
     );
-
-    
   }
 
   public matchPassword (_this: any): ValidatorFn {
@@ -83,5 +81,4 @@ export class SignUpComponent implements OnInit {
       return null;
     };
   }
-
 }

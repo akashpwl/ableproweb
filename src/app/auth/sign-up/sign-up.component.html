@@ -1,12 +1,10 @@
 <div [ngClass]="{'cursor': isLoading }">
-
   <h5 class="card-title text-center">Sign Up</h5>
   <form class="form-signin" [formGroup]="formRef" (ngSubmit)="onSubmit()">
     <div class="form-label-group">
       <input type="name" formControlName="name" id="inputName" class="form-control" placeholder="Full Name" required autofocus ngModel>
       <label for="inputName">Full Name</label>
       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger pl-3">
-
         <div *ngIf="name.errors?.required">
           Full Name is required.
         </div>
@@ -19,7 +17,6 @@
       <input type="email" formControlName="email" id="inputEmail" class="form-control" placeholder="Email address" required email ngModel>
       <label for="inputEmail">Email address</label>
       <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger pl-3">
-
         <div *ngIf="email.errors?.required">
           Email is required.
         </div>
@@ -28,7 +25,6 @@
         </div>
       </div>
     </div>
-
     <div class="form-label-group">
       <input type="password" formControlName="password" id="inputPassword" class="form-control" placeholder="Password" required ngModel>
       <label for="inputPassword">Password</label>
@@ -46,7 +42,6 @@
       <input type="password" formControlName="confirmPassword" id="inputConfirmPassword" class="form-control" placeholder="Password" required ngModel>
       <label for="inputConfirmPassword">Confirm Password</label>
       <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="text-danger pl-3">
-
         <div *ngIf="confirmPassword.errors?.required">
           Confirm Password is required.
         </div>
@@ -58,7 +53,6 @@
         </div>
       </div>
     </div>
-
     <button class="btn btn-lg btn-primary btn-block" [disabled]="!formRef.valid || isLoading">
       <span [ngClass]="{'spinner-grow spinner-grow-sm': isLoading }" role="status" aria-hidden="true"></span>
       SIGN UP</button>

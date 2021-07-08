@@ -6,26 +6,23 @@ import { Output } from '@angular/core';
 import { throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class DashboardService implements OnInit, OnDestroy {
+export class DashboardService implements OnDestroy {
   public postArray: Array<any> = [];
-  public currentUserId: any ;
-  public currentUserName: any; 
+  public currentUserId: string;
+  public currentUserName: string;
   @Output() eventEmitter = new EventEmitter<{ event: string }>();
   constructor(private readonly http: HttpClient) {
   }
-  
-  ngOnInit(): void {
-  
-  }
 
-  public updatePassword (passwordObj: object) {
+
+  public updatePassword(passwordObj: object) {
     return this.http.patch<any>(
       URL.changePassword,
       passwordObj
     ).pipe(catchError(this.handleError));
   }
 
-  public addNewPost (url: string, caption: string) {
+  public addNewPost(url: string, caption: string) {
     return this.http.post<any>(
       URL.addNewPost,
       {
@@ -39,12 +36,11 @@ export class DashboardService implements OnInit, OnDestroy {
       catchError(this.handleError));
   }
 
-  public getAllPost () {
+  public getAllPost() {
     return this.http.get<any>(
       URL.getAllPost
     ).pipe(map((res) => {
       res = res.data.allPost;
-      console.log(res);
       return this.addAllPostToArray(res);
 
     }),
@@ -52,7 +48,7 @@ export class DashboardService implements OnInit, OnDestroy {
 
   }
 
-  private addNewPostToArray (res: any) {
+  private addNewPostToArray(res: any) {
     const post = {
       postId: res.id,
       caption: res.caption,
@@ -67,7 +63,7 @@ export class DashboardService implements OnInit, OnDestroy {
     this.postArray.unshift(post);
   }
 
-  private addAllPostToArray (allPost: Array<any>) {
+  private addAllPostToArray(allPost: Array<any>) {
     this.postArray = [];
     allPost.map(post => {
 
@@ -92,17 +88,17 @@ export class DashboardService implements OnInit, OnDestroy {
     return this.postArray;
   }
 
-  public getPhotosArray(){
+  public getPhotosArray() {
     const filteredPhotosArray = this.postArray.filter(
       post => post.userId == this.currentUserId
     );
     const mappedPhotosArray = filteredPhotosArray.map(
-      post=> post.url
+      post => post.url
     )
     return mappedPhotosArray;
   }
 
-  public likePost (PostId: string, index: number) {
+  public likePost(PostId: string, index: number) {
     return this.http.post<any>(
       URL.likePost,
       { PostId: PostId }
@@ -116,7 +112,7 @@ export class DashboardService implements OnInit, OnDestroy {
       catchError(this.handleError));
   }
 
-  public unlikePost (PostId: string, index: number) {
+  public unlikePost(PostId: string, index: number) {
     return this.http.post<any>(
       URL.unlikePost,
       {
@@ -132,12 +128,12 @@ export class DashboardService implements OnInit, OnDestroy {
       catchError(this.handleError));
   }
 
-  public GMTtoISTtimezone (time: string) {
+  public GMTtoISTtimezone(time: string) {
     const date = new Date(time).getTime();
     return date;
   }
 
-  public getFollowingsCount () {
+  public getFollowingsCount() {
     return this.http.get<any>(
       URL.getFollowingsCount,
     ).pipe(map((res) => {
@@ -146,7 +142,7 @@ export class DashboardService implements OnInit, OnDestroy {
       catchError(this.handleError));
   }
 
-  public getFollowersCount () {
+  public getFollowersCount() {
     return this.http.get<any>(
       URL.getFollowersCount,
     ).pipe(map((res) => {
@@ -155,7 +151,7 @@ export class DashboardService implements OnInit, OnDestroy {
       catchError(this.handleError));
   }
 
-  public getFollowingUsers(){
+  public getFollowingUsers() {
     return this.http.get<any>(
       URL.followingsUsers,
     ).pipe(map((res) => {
@@ -164,7 +160,7 @@ export class DashboardService implements OnInit, OnDestroy {
       catchError(this.handleError));
 
   }
-  public getNotFollowingUsers(){
+  public getNotFollowingUsers() {
     return this.http.get<any>(
       URL.notFollowingsUsers,
     ).pipe(map((res) => {
@@ -173,7 +169,7 @@ export class DashboardService implements OnInit, OnDestroy {
       catchError(this.handleError));
   }
 
-  public followUser(followingId:string){
+  public followUser(followingId: string) {
     return this.http.post<any>(
       URL.followUser,
       { followingId }
@@ -182,7 +178,7 @@ export class DashboardService implements OnInit, OnDestroy {
 
   }
 
-  public unFollowUser(followingId:string){
+  public unFollowUser(followingId: string) {
     return this.http.post<any>(
       URL.unFollowUser,
       { followingId }
@@ -191,7 +187,7 @@ export class DashboardService implements OnInit, OnDestroy {
 
   }
 
-  public getUserDetails(){
+  public getUserDetails() {
     return this.http.get<any>(
       URL.getUserDetails
     ).pipe(map((res) => {
@@ -202,7 +198,7 @@ export class DashboardService implements OnInit, OnDestroy {
 
   }
 
-  public updateUserDetails(DataObj:any){
+  public updateUserDetails(DataObj: any) {
     return this.http.patch<any>(
       URL.updateUser,
       DataObj
@@ -213,7 +209,7 @@ export class DashboardService implements OnInit, OnDestroy {
       catchError(this.handleError));
   }
 
-  private handleError (errorRes: HttpErrorResponse) {
+  private handleError(errorRes: HttpErrorResponse) {
     let errorMsg = 'An unknown error occurred';
     if (!errorRes.error || !errorRes.error.message) {
       console.log(errorRes);
